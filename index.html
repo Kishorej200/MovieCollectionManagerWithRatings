@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Collection Manager</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>🎬 Movie Collection Manager</h1>
+
+        <!-- Add Movie -->
+        <div class="card">
+            <h2>Add New Movie</h2>
+            <input type="text" id="movieTitle" placeholder="Movie Title *">
+            <input type="text" id="director" placeholder="Director">
+            <input type="number" id="year" placeholder="Year">
+            <select id="genre">
+                <option value="Action">Action</option>
+                <option value="Comedy">Comedy</option>
+                <option value="Drama">Drama</option>
+                <option value="Horror">Horror</option>
+                <option value="Sci-Fi">Sci-Fi</option>
+                <option value="Romance">Romance</option>
+                <option value="Thriller">Thriller</option>
+            </select>
+            <div class="rating-input" id="ratingInput">
+                <span class="star" data-rating="1">★</span>
+                <span class="star" data-rating="2">★</span>
+                <span class="star" data-rating="3">★</span>
+                <span class="star" data-rating="4">★</span>
+                <span class="star" data-rating="5">★</span>
+                <span id="ratingText">0/5</span>
+            </div>
+            <textarea id="description" placeholder="Description / Notes"></textarea>
+            <label><input type="checkbox" id="watched"> Mark as Watched</label>
+            <button onclick="addMovie()">Add Movie</button>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats-grid">
+            <div class="stat-card"><h3 id="totalMovies">0</h3>Total Movies</div>
+            <div class="stat-card"><h3 id="avgRating">0</h3>Average Rating</div>
+            <div class="stat-card"><h3 id="watchedCount">0</h3>Watched</div>
+            <div class="stat-card"><h3 id="favoriteGenre">-</h3>Favorite Genre</div>
+        </div>
+
+        <!-- Filters -->
+        <div class="card">
+            <h2>Filters</h2>
+            <div class="filter-bar">
+                <button class="filter-btn active" onclick="filterByGenre('All', event)">All</button>
+                <button class="filter-btn" onclick="filterByGenre('Action', event)">Action</button>
+                <button class="filter-btn" onclick="filterByGenre('Comedy', event)">Comedy</button>
+                <button class="filter-btn" onclick="filterByGenre('Drama', event)">Drama</button>
+                <button class="filter-btn" onclick="filterByGenre('Sci-Fi', event)">Sci-Fi</button>
+                <button class="filter-btn" onclick="filterByGenre('Watched', event)">Watched</button>
+            </div>
+            <input type="text" id="searchInput" placeholder="Search movies..." onkeyup="displayMovies()">
+        </div>
+
+        <!-- Movie Collection -->
+        <div class="card">
+            <h2>My Collection</h2>
+            <div class="movies-grid" id="moviesGrid"></div>
+        </div>
+
+        <!-- Analytics -->
+        <div class="card">
+            <h2>Analytics</h2>
+            <div class="chart-container">
+                <div class="chart-wrapper">
+                    <canvas id="genreChart"></canvas>
+                </div>
+            </div>
+            <div class="chart-container">
+                <div class="chart-wrapper">
+                    <canvas id="ratingChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Modal -->
+    <div class="modal" id="editModal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeEditModal()">×</button>
+            <h2>Edit Movie</h2>
+            <input type="text" id="editTitle" placeholder="Title">
+            <input type="text" id="editDirector" placeholder="Director">
+            <input type="number" id="editYear" placeholder="Year">
+            <select id="editGenre">
+                <option value="Action">Action</option>
+                <option value="Comedy">Comedy</option>
+                <option value="Drama">Drama</option>
+                <option value="Horror">Horror</option>
+                <option value="Sci-Fi">Sci-Fi</option>
+                <option value="Romance">Romance</option>
+                <option value="Thriller">Thriller</option>
+            </select>
+            <div class="rating-input" id="editRatingInput">
+                <span class="star edit-star" data-rating="1">★</span>
+                <span class="star edit-star" data-rating="2">★</span>
+                <span class="star edit-star" data-rating="3">★</span>
+                <span class="star edit-star" data-rating="4">★</span>
+                <span class="star edit-star" data-rating="5">★</span>
+                <span id="editRatingText">0/5</span>
+            </div>
+            <textarea id="editDescription" placeholder="Description"></textarea>
+            <label><input type="checkbox" id="editWatched"> Mark as Watched</label>
+            <button onclick="saveEdit()">Save Changes</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
