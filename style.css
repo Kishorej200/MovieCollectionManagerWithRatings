@@ -4,6 +4,13 @@ h1, h2 {margin-bottom:15px;}
 .container {max-width:1200px; margin:0 auto;}
 .card {background: rgba(255,255,255,0.05); padding:20px; margin-bottom:25px; border-radius:15px;}
 input, select, textarea {width:100%; padding:10px; margin-bottom:10px; border-radius:8px; border:none; background: rgba(255,255,255,0.1); color:#fff;}
+
+/* FIX: Ensure dropdown options are readable */
+select option {
+    background: #FFFFFF; /* Light background */
+    color: #1a1a2e;    /* Dark text for contrast */
+}
+
 button {padding:10px 20px; border:none; border-radius:8px; background:#667eea; color:#fff; cursor:pointer;}
 button:hover {opacity:0.9;}
 .movies-grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px;}
