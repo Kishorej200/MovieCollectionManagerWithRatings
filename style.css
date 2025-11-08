@@ -3,12 +3,27 @@ body {font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background:#1
 h1, h2 {margin-bottom:15px;}
 .container {max-width:1200px; margin:0 auto;}
 .card {background: rgba(255,255,255,0.05); padding:20px; margin-bottom:25px; border-radius:15px;}
-input, select, textarea {width:100%; padding:10px; margin-bottom:10px; border-radius:8px; border:none; background: rgba(255,255,255,0.1); color:#fff;}
 
-/* FIX: Ensure dropdown options are readable */
+input, select, textarea {
+    width:100%; 
+    padding:10px; 
+    margin-bottom:10px; 
+    border-radius:8px; 
+    border:none; 
+    background: rgba(255,255,255,0.1); 
+    /* Enforcing white text color on the select box */
+    color:#fff; 
+}
+
+/* FIX 1: Ensure the default text (when the dropdown is closed) is readable */
+select {
+    color: #fff; /* Ensure the selected value in the box is white */
+}
+
+/* FIX 2: Ensure the dropdown menu items (when the dropdown is open) are readable */
 select option {
-    background: #FFFFFF; /* Light background */
-    color: #1a1a2e;    /* Dark text for contrast */
+    background: #FFFFFF; /* White background for the pop-up list items */
+    color: #1a1a2e;    /* Dark text for the pop-up list items */
 }
 
 button {padding:10px 20px; border:none; border-radius:8px; background:#667eea; color:#fff; cursor:pointer;}
